@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { playLandingSound } from './sound';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -257,6 +258,7 @@ function setupCarretScroll(): () => void {
 
     carretCtx = gsap.context(() => {
       const counterEl = section.querySelector<HTMLElement>('[data-carret-counter]');
+      let activeFrameIndex = 1;
       const cards = Array.from(
         track.querySelectorAll<HTMLElement>('[data-carret-card]'),
       );
@@ -289,11 +291,12 @@ function setupCarretScroll(): () => void {
           invalidateOnRefresh: true,
           end: () => `+=${Math.max(600, track.scrollWidth - window.innerWidth + 240)}`,
           onUpdate: (self) => {
-            if (counterEl) {
-              const frameIndex = Math.min(
-                5,
-                Math.max(1, Math.floor(self.progress * 5) + 1),
-              );
+            const frameIndex = Math.min(5, Math.max(1, Math.floor(self.progress * 5) + 1));
+            if (frameIndex !== activeFrameIndex) {
+              activeFrameIndex = frameIndex;
+              playLandingSound('shutter');
+            }
+            if (counterEl && track.hasAttribute('data-carret-ready')) {
               counterEl.textContent = `${String(frameIndex).padStart(2, '0')} / 05`;
             }
 
@@ -432,6 +435,13 @@ function setupSpotlights(cleanups: Array<() => void>): void {
  * Returns a cleanup callback that tears down all observers, listeners, and tickers.
  */
 export function initMotionEngine(): () => void {
+  const onMagneticEnter = (event: PointerEvent) => {
+    if (event.target instanceof Element && event.target.matches('[data-magnetic]')) {
+      playLandingSound('hover');
+    }
+  };
+  document.addEventListener('pointerenter', onMagneticEnter, true);
+
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) {
     const intro = document.getElementById('loom-intro');
@@ -442,7 +452,7 @@ export function initMotionEngine(): () => void {
       document.querySelectorAll<HTMLElement>('[data-reveal="line"]'),
     );
     revealLinesImmediately(lines);
-    return () => {};
+    return () => document.removeEventListener('pointerenter', onMagneticEnter, true);
   }
 
   const cleanups: Array<() => void> = [];
@@ -501,6 +511,7 @@ export function initMotionEngine(): () => void {
   });
 
   return () => {
+    document.removeEventListener('pointerenter', onMagneticEnter, true);
     document.removeEventListener('click', onDocumentClick);
     gsap.ticker.remove(onTicker);
     for (const cleanup of cleanups) {

@@ -12,6 +12,7 @@ import {
   type DownloadModeId,
   type Lang,
 } from '../data/content';
+import { playLandingSound } from '../scripts/sound';
 
 export function DownloadPortal() {
   const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
@@ -48,11 +49,13 @@ export function DownloadPortal() {
   const snippet = activeMode.snippet[lang];
 
   const handleSelectMode = (nextMode: DownloadModeId) => {
+    if (nextMode !== modeId) playLandingSound('click');
     setModeId(nextMode);
     setCopied(false);
   };
 
   const handleCopy = async () => {
+    playLandingSound('chime', 'copy');
     if (typeof navigator === 'undefined' || !navigator.clipboard) {
       return;
     }

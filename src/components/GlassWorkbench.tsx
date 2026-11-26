@@ -1,4 +1,5 @@
 import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { playLandingSound } from '../scripts/sound';
 
 type Lang = 'es' | 'en';
 type AgentState = 'thinking' | 'reading' | 'analysing' | 'debugging';
@@ -374,7 +375,10 @@ export function GlassWorkbench() {
                     type="button"
                     data-spotlight
                     onPointerMove={handleSpotlightMove}
-                    onClick={() => setSelectedFolder(folder.id)}
+                    onClick={() => {
+                      if (!isSelected) playLandingSound('click');
+                      setSelectedFolder(folder.id);
+                    }}
                     aria-pressed={isSelected}
                     className={`relative z-10 flex min-h-44 w-full flex-col justify-between rounded-2xl p-4 text-left transition-transform duration-300 loom-glass-folder loom-spotlight group-hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)] motion-reduce:transition-none ${
                       isSelected
@@ -529,7 +533,10 @@ export function GlassWorkbench() {
                   <button
                     key={item.id}
                     type="button"
-                    onClick={() => triggerAgentState(item.id)}
+                    onClick={() => {
+                      playLandingSound('chime', item.id);
+                      triggerAgentState(item.id);
+                    }}
                     onMouseEnter={() => triggerAgentState(item.id)}
                     aria-pressed={isSelected}
                     className={`flex min-h-11 w-full items-center gap-3 rounded-xl border px-3.5 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)] ${

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { playLandingSound } from '../scripts/sound';
 
 type Lang = 'es' | 'en';
 type IslandState = 'thinking' | 'reading' | 'analysing' | 'debugging';
@@ -209,7 +210,9 @@ export function CarretReel() {
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track || typeof IntersectionObserver === 'undefined') return;
+    if (!track) return;
+    track.dataset.carretReady = '';
+    if (typeof IntersectionObserver === 'undefined') return;
     const cards = Array.from(track.querySelectorAll<HTMLElement>('[data-carret-card]'));
     if (cards.length === 0) return;
 
@@ -250,6 +253,7 @@ export function CarretReel() {
   const activeIslandMeta = ISLAND_PILLS[islandState];
 
   const scrollToCard = (index: number): void => {
+    playLandingSound('shutter');
     setActiveFrame(index);
     const track = trackRef.current;
     if (!track) return;
@@ -260,6 +264,7 @@ export function CarretReel() {
   };
 
   const selectIslandState = (next: IslandState): void => {
+    if (next !== islandState) playLandingSound('shutter');
     setIslandState(next);
     window.dispatchEvent(new CustomEvent('loom:state-accent', { detail: next }));
   };

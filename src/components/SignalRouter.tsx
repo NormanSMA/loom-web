@@ -12,6 +12,7 @@ import {
   type SignalNodeId,
   type SignalTier,
 } from '../data/content';
+import { playLandingSound } from '../scripts/sound';
 
 const TIER_STYLES: Record<
   SignalTier,
@@ -130,7 +131,10 @@ export function SignalRouter() {
                     type="button"
                     role="radio"
                     aria-checked={isSelected}
-                    onClick={() => setSelectedId(nodeId)}
+                    onClick={() => {
+                      if (!isSelected) playLandingSound('click');
+                      setSelectedId(nodeId);
+                    }}
                     className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)] active:scale-[0.99] ${
                       isSelected
                         ? 'border-[var(--border-strong)] bg-[var(--bg-elevated)] text-[var(--text-primary)]'

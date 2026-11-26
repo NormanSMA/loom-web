@@ -280,6 +280,8 @@ export interface CopyBundle {
       download: string;
     };
     langToggleAria: string;
+    soundOnAria: string;
+    soundOffAria: string;
     githubCta: string;
   };
   hero: {
@@ -336,6 +338,8 @@ export const COPY: Record<Lang, CopyBundle> = {
         download: 'Descargar',
       },
       langToggleAria: 'Cambiar idioma a inglés',
+      soundOnAria: 'Silenciar sonido',
+      soundOffAria: 'Activar sonido',
       githubCta: 'GitHub',
     },
     hero: {
@@ -398,6 +402,8 @@ export const COPY: Record<Lang, CopyBundle> = {
         download: 'Download',
       },
       langToggleAria: 'Switch language to Spanish',
+      soundOnAria: 'Mute sound',
+      soundOffAria: 'Enable sound',
       githubCta: 'GitHub',
     },
     hero: {
