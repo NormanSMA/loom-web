@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --bg-void: #050507;
+  --bg-surface: #0b0c10;
+  --bg-elevated: #11131a;
+  --bg-glass: rgba(14, 16, 22, 0.74);
+  --bg-glass-strong: rgba(18, 21, 30, 0.86);
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --accent-blue: #3b82f6;
+  --accent-blue-soft: rgba(59, 130, 246, 0.14);
+  --accent-green: #22c55e;
+  --accent-green-soft: rgba(34, 197, 94, 0.14);
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --text-primary: #f4f4f6;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --dot-inactive: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-void);
+    color: var(--text-primary);
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    scroll-behavior: auto;
+    overflow-x: clip;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-void);
+    color: var(--text-primary);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  code, pre, .font-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+.loom-dot-matrix {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.loom-glass-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-hairline);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.loom-glass-folder {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(16, 18, 25, 0.88) 45%, rgba(10, 11, 16, 0.96) 100%);
+  border: 1px solid var(--border-hairline);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 22px 48px rgba(0, 0, 0, 0.55);
+}
+
+.loom-sprocket-rail {
+  height: 18px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.22) 0 10px,
+    transparent 10px 28px
+  );
+  background-size: 28px 6px;
+  background-repeat: repeat-x;
+  background-position: 0 center;
+  opacity: 0.45;
+}
+
+.loom-spotlight {
+  position: relative;
+}
+
+.loom-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(59, 130, 246, 0.16),
+    transparent 70%
+  );
+  opacity: var(--spot-op, 0);
+  transition: opacity 220ms ease;
+}
+
+.loom-spotlight:hover::before {
+  opacity: 1;
+}
+
+.loom-clip-line {
+  clip-path: inset(0 0 0 0);
+  will-change: transform, clip-path, opacity;
+}
+
+.loom-magnetic {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease, background-color 220ms ease;
+  will-change: transform;
+}
+
+.loom-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--bg-void);
+  transform-origin: top center;
+}
+
+@keyframes loomThreadPulse {
+  0%, 100% { stroke-dashoffset: 48; opacity: 0.45; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.loom-thread-flow {
+  stroke-dasharray: 10 6;
+  animation: loomThreadPulse 2.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loom-curtain {
+    display: none !important;
+  }
+  .loom-magnetic,
+  .loom-clip-line,
+  .loom-thread-flow {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
