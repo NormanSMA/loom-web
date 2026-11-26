@@ -5,7 +5,6 @@ type Lang = 'es' | 'en';
 type IslandState = 'thinking' | 'reading' | 'analysing' | 'debugging';
 
 interface FrameCopy {
-  readonly code: string;
   readonly title: string;
   readonly subtitle: string;
 }
@@ -70,9 +69,8 @@ const ISLAND_PILLS: Record<IslandState, { es: string; en: string; dotClass: stri
 const COPY: Record<
   Lang,
   {
-    eyebrow: string;
     headline: string;
-    frames: readonly FrameCopy[];
+    frames: readonly [FrameCopy, FrameCopy, FrameCopy, FrameCopy, FrameCopy];
     worktreeBadge: string;
     worktreeSummary: string;
     orbitCenter: string;
@@ -88,31 +86,25 @@ const COPY: Record<
   }
 > = {
   es: {
-    eyebrow: '01 // CARRETE_35MM',
     headline: 'Cinco fotogramas de orquestación local sin fricción.',
     frames: [
       {
-        code: '01 // WORKTREES',
         title: 'Rieles paralelos por worktree',
         subtitle: 'Cada agente trabaja aislado y cruza compuertas antes de integrar.',
       },
       {
-        code: '02 // ÓRBITA_MULTIAGENTE',
         title: 'Malla multi-modelo sincronizada',
         subtitle: 'Enrutamiento activo entre proveedores locales y remotos.',
       },
       {
-        code: '03 // PRIVACY_GATE',
         title: 'Circuito ciego de secretos',
         subtitle: 'Bloqueo estricto de rutas sensibles y cabeceras no loopback.',
       },
       {
-        code: '04 // NOTHING_UX_TELEMETRY',
         title: 'Telemetría matriz de puntos',
         subtitle: 'Pulso de carga por agente y anillo de salud en tiempo real.',
       },
       {
-        code: '05 // DESKTOP_TAURI_ISLAND',
         title: 'Isla flotante de escritorio',
         subtitle: 'Notch superior con estado vivo y atajo global de bandeja.',
       },
@@ -131,31 +123,25 @@ const COPY: Record<
     islandCaption: 'Selecciona un estado para simular el notch',
   },
   en: {
-    eyebrow: '01 // 35MM_REEL',
     headline: 'Five frames of frictionless local orchestration.',
     frames: [
       {
-        code: '01 // WORKTREES',
         title: 'Parallel worktree rails',
         subtitle: 'Every agent runs isolated and clears quality gates before merge.',
       },
       {
-        code: '02 // ORBITA_MULTIAGENTE',
         title: 'Synchronized multi-agent mesh',
         subtitle: 'Live routing across local binaries and model providers.',
       },
       {
-        code: '03 // PRIVACY_GATE',
         title: 'Zero-leak secret circuit',
         subtitle: 'Strict blocking for sensitive paths and non-loopback hosts.',
       },
       {
-        code: '04 // NOTHING_UX_TELEMETRY',
         title: 'Dot-matrix live telemetry',
         subtitle: 'Per-agent pulse equalizer and concentric gate health ring.',
       },
       {
-        code: '05 // DESKTOP_TAURI_ISLAND',
         title: 'Frameless desktop island',
         subtitle: 'Top-notch live state indicator with global tray shortcut.',
       },
@@ -244,11 +230,7 @@ export function CarretReel() {
 
   const t = COPY[lang];
   const counterLabel = `0${activeFrame + 1} / 05`;
-  const frame0 = t.frames[0];
-  const frame1 = t.frames[1];
-  const frame2 = t.frames[2];
-  const frame3 = t.frames[3];
-  const frame4 = t.frames[4];
+  const [frame0, frame1, frame2, frame3, frame4] = t.frames;
   const activeColVal = EQUALIZER_BARS[hoveredCol] ?? 6;
   const activeIslandMeta = ISLAND_PILLS[islandState];
 
@@ -290,10 +272,7 @@ export function CarretReel() {
 
       <div className="mx-auto mb-8 flex max-w-6xl flex-col gap-4 px-4 sm:px-6 md:flex-row md:items-end md:justify-between">
         <div className="min-w-0">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-[var(--accent-blue)]">
-            {t.eyebrow}
-          </p>
-          <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl">
+          <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl">
             {t.headline}
           </h2>
         </div>
@@ -304,10 +283,10 @@ export function CarretReel() {
               const isSelected = activeFrame === idx;
               return (
                 <button
-                  key={frame.code}
+                  key={idx}
                   type="button"
                   onClick={() => scrollToCard(idx)}
-                  aria-label={frame.code}
+                  aria-label={frame.title}
                   aria-pressed={isSelected}
                   className={`min-h-11 min-w-11 rounded-lg border font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)] ${
                     isSelected
@@ -337,7 +316,6 @@ export function CarretReel() {
           ref={trackRef}
           className="flex flex-col gap-5 px-4 md:w-max md:flex-row md:gap-8 md:px-12"
         >
-          {/* Frame 01 // WORKTREES */}
           <article
             data-carret-card
             data-spotlight
@@ -349,14 +327,9 @@ export function CarretReel() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-strong)] bg-[var(--bg-elevated)]">
                   <img src="/brands/git.svg" alt="Git" className="h-5 w-5" loading="lazy" />
                 </div>
-                <div>
-                  <p className="font-mono text-xs tracking-widest text-[var(--accent-blue)]">
-                    {frame0?.code}
-                  </p>
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                    {frame0?.title}
-                  </h3>
-                </div>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                  {frame0.title}
+                </h3>
               </div>
               <span className="rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green-soft)] px-3 py-1 font-mono text-xs text-[var(--accent-green)]">
                 {t.worktreeBadge}
@@ -426,12 +399,11 @@ export function CarretReel() {
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--text-secondary)]">
-              <span>{frame0?.subtitle}</span>
+              <span>{frame0.subtitle}</span>
               <span className="font-mono text-[var(--text-muted)]">{t.worktreeSummary}</span>
             </div>
           </article>
 
-          {/* Frame 02 // ORBITA_MULTIAGENTE */}
           <article
             data-carret-card
             data-spotlight
@@ -439,14 +411,9 @@ export function CarretReel() {
             className="w-full max-w-[820px] shrink-0 rounded-3xl p-6 loom-glass-panel loom-spotlight md:w-[76vw] md:p-8 lg:w-[62vw]"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-xs tracking-widest text-[var(--accent-blue)]">
-                  {frame1?.code}
-                </p>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                  {frame1?.title}
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                {frame1.title}
+              </h3>
               <span className="rounded-full border border-[var(--border-strong)] bg-[var(--bg-elevated)] px-3 py-1 font-mono text-xs text-[var(--text-secondary)]">
                 {t.orbitCaption}
               </span>
@@ -490,7 +457,8 @@ export function CarretReel() {
                 ))}
               </svg>
 
-              <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-[var(--accent-blue)]/60 bg-[var(--bg-elevated)] shadow-lg">
+              <div className="absolute left-1/2 top-1/2 flex h-16 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-1 rounded-2xl border border-[var(--accent-blue)]/60 bg-[var(--bg-elevated)] shadow-lg">
+                <img src="/favicon.svg" alt="" className="h-5 w-5 shrink-0 rounded-md" />
                 <span className="font-mono text-xs font-semibold tracking-widest text-[var(--text-primary)]">
                   {t.orbitCenter}
                 </span>
@@ -515,10 +483,9 @@ export function CarretReel() {
               ))}
             </div>
 
-            <p className="mt-4 text-xs text-[var(--text-secondary)]">{frame1?.subtitle}</p>
+            <p className="mt-4 text-xs text-[var(--text-secondary)]">{frame1.subtitle}</p>
           </article>
 
-          {/* Frame 03 // PRIVACY_GATE */}
           <article
             data-carret-card
             data-spotlight
@@ -526,14 +493,9 @@ export function CarretReel() {
             className="w-full max-w-[820px] shrink-0 rounded-3xl p-6 loom-glass-panel loom-spotlight md:w-[76vw] md:p-8 lg:w-[62vw]"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-xs tracking-widest text-[var(--accent-blue)]">
-                  {frame2?.code}
-                </p>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                  {frame2?.title}
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                {frame2.title}
+              </h3>
               <span className="rounded-full border border-[var(--accent-blue)]/30 bg-[var(--accent-blue-soft)] px-3 py-1 font-mono text-xs text-[var(--accent-blue)]">
                 127.0.0.1:4320
               </span>
@@ -615,9 +577,10 @@ export function CarretReel() {
                 .env filter
               </span>
             </div>
+
+            <p className="mt-4 text-xs text-[var(--text-secondary)]">{frame2.subtitle}</p>
           </article>
 
-          {/* Frame 04 // NOTHING_UX_TELEMETRY */}
           <article
             data-carret-card
             data-spotlight
@@ -625,14 +588,9 @@ export function CarretReel() {
             className="w-full max-w-[820px] shrink-0 rounded-3xl p-6 loom-glass-panel loom-spotlight md:w-[76vw] md:p-8 lg:w-[62vw]"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-xs tracking-widest text-[var(--accent-blue)]">
-                  {frame3?.code}
-                </p>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                  {frame3?.title}
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                {frame3.title}
+              </h3>
               <span className="font-mono text-xs text-[var(--text-secondary)]">
                 {t.telemetryCol} {String(hoveredCol + 1).padStart(2, '0')} · {activeColVal}/7
               </span>
@@ -712,10 +670,9 @@ export function CarretReel() {
               </div>
             </div>
 
-            <p className="mt-4 text-xs text-[var(--text-secondary)]">{frame3?.subtitle}</p>
+            <p className="mt-4 text-xs text-[var(--text-secondary)]">{frame3.subtitle}</p>
           </article>
 
-          {/* Frame 05 // DESKTOP_TAURI_ISLAND */}
           <article
             data-carret-card
             data-spotlight
@@ -723,14 +680,9 @@ export function CarretReel() {
             className="w-full max-w-[820px] shrink-0 rounded-3xl p-6 loom-glass-panel loom-spotlight md:w-[76vw] md:p-8 lg:w-[62vw]"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-xs tracking-widest text-[var(--accent-blue)]">
-                  {frame4?.code}
-                </p>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                  {frame4?.title}
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                {frame4.title}
+              </h3>
               <span className="font-mono text-xs text-[var(--text-muted)]">
                 {t.islandShortcut}
               </span>
@@ -795,7 +747,7 @@ export function CarretReel() {
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--text-secondary)]">
-              <span>{frame4?.subtitle}</span>
+              <span>{frame4.subtitle}</span>
               <span className="font-mono text-[var(--text-muted)]">{t.islandCaption}</span>
             </div>
           </article>

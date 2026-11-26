@@ -20,19 +20,9 @@ const en = COPY.en;
     aria-hidden="true"
   >
     <div class="flex items-center gap-3">
-      <span class="grid h-7 w-7 grid-cols-3 gap-1">
-        <span class="rounded-xs bg-[var(--text-primary)] opacity-80" />
-        <span class="rounded-xs bg-[var(--accent-blue)]" />
-        <span class="rounded-xs bg-[var(--accent-green)]" />
-        <span class="rounded-xs bg-[var(--accent-blue)]" />
-        <span class="rounded-xs bg-[var(--text-primary)]" />
-        <span class="rounded-xs bg-[var(--accent-blue)]" />
-        <span class="rounded-xs bg-[var(--accent-green)]" />
-        <span class="rounded-xs bg-[var(--accent-blue)]" />
-        <span class="rounded-xs bg-[var(--text-primary)] opacity-80" />
-      </span>
+      <img src="/favicon.svg" alt="" class="h-7 w-7 shrink-0 rounded-lg" />
       <span class="font-mono text-sm tracking-[0.28em] text-[var(--text-primary)]">
-        LOOM // TELAR
+        LOOM
       </span>
     </div>
     <div class="w-56 space-y-2">
@@ -42,8 +32,7 @@ const en = COPY.en;
           class="h-full origin-left scale-x-0 bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-green)]"
         />
       </div>
-      <div class="flex justify-between font-mono text-[11px] text-[var(--text-muted)]">
-        <span>URDIMBRE · 127.0.0.1</span>
+      <div class="text-right font-mono text-[11px] text-[var(--text-muted)]">
         <span><span data-intro-progress>00</span>%</span>
       </div>
     </div>
@@ -60,134 +49,55 @@ const en = COPY.en;
     <section
       id="hero"
       data-hero
-      class="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-4 pt-28 pb-16 sm:px-6"
+      class="relative mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center gap-7 px-4 pt-28 pb-16 text-center sm:px-6"
     >
-      <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.85fr)]">
-        <div class="space-y-7">
-          <div class="inline-flex min-h-9 items-center gap-2.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-glass)] px-3.5 py-1 font-mono text-xs text-[var(--text-secondary)] backdrop-blur-md">
-            <span class="h-2 w-2 rounded-full bg-[var(--accent-green)]" />
-            <span data-i18n-es={es.hero.loopbackBadge} data-i18n-en={en.hero.loopbackBadge}>
-              {es.hero.loopbackBadge}
-            </span>
-          </div>
-
-          <h1 class="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-6xl lg:text-7xl lg:leading-[1.02]">
-            <span
-              data-reveal="line"
-              data-i18n-es={es.hero.line1}
-              data-i18n-en={en.hero.line1}
-              class="loom-clip-line block"
-            >
-              {es.hero.line1}
-            </span>
-            <span
-              data-reveal="line"
-              data-i18n-es={es.hero.line2}
-              data-i18n-en={en.hero.line2}
-              class="loom-clip-line block bg-gradient-to-r from-[var(--text-primary)] via-[var(--accent-blue)] to-[var(--accent-green)] bg-clip-text text-transparent"
-            >
-              {es.hero.line2}
-            </span>
-          </h1>
-
-          <p
-            data-reveal="line"
-            data-i18n-es={es.hero.subtitle}
-            data-i18n-en={en.hero.subtitle}
-            class="loom-clip-line max-w-xl text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg"
-          >
-            {es.hero.subtitle}
-          </p>
-
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <a
-              href="#descargar"
-              data-magnetic
-              class="loom-magnetic inline-flex min-h-12 items-center gap-2 rounded-2xl bg-[var(--accent-blue)] px-6 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-blue)]"
-            >
-              <span data-i18n-es={es.hero.primaryCta} data-i18n-en={en.hero.primaryCta}>
-                {es.hero.primaryCta}
-              </span>
-              <span aria-hidden="true">-&gt;</span>
-            </a>
-            <a
-              href="#carret-pin-host"
-              data-magnetic
-              class="loom-magnetic loom-glass-panel inline-flex min-h-12 items-center gap-2 rounded-2xl px-5 text-sm font-medium text-[var(--text-primary)] hover:border-[var(--border-strong)] focus-visible:outline-2 focus-visible:outline-[var(--accent-blue)]"
-            >
-              <span data-i18n-es={es.hero.secondaryCta} data-i18n-en={en.hero.secondaryCta}>
-                {es.hero.secondaryCta}
-              </span>
-            </a>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3 pt-3">
-            <span
-              data-i18n-es={es.hero.toolsLabel}
-              data-i18n-en={en.hero.toolsLabel}
-              class="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]"
-            >
-              {es.hero.toolsLabel}
-            </span>
-            <div class="flex flex-wrap items-center gap-2">
-              <img src="/brands/claude.svg" alt="Claude" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/codex.svg" alt="Codex" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/gemini.svg" alt="Gemini" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/antigravity.svg" alt="Antigravity" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/opencode.svg" alt="OpenCode" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/omniroute.svg" alt="OmniRoute" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/claudehub.png" alt="ClaudeHub" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/ollama.svg" alt="Ollama" class="h-6 w-6 rounded-md object-contain" />
-              <img src="/brands/git.svg" alt="Git" class="h-6 w-6 rounded-md object-contain" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Parallax Telemetry Capsule -->
-        <aside
-          data-parallax="-28"
-          data-spotlight
-          class="loom-glass-panel loom-spotlight hidden rounded-3xl p-6 lg:block"
+      <h1 class="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-6xl lg:text-7xl lg:leading-[1.02]">
+        <span
+          data-reveal="line"
+          data-i18n-es={es.hero.line1}
+          data-i18n-en={en.hero.line1}
+          class="loom-clip-line block"
         >
-          <div class="flex items-center justify-between border-b border-[var(--border-hairline)] pb-4">
-            <div class="flex items-center gap-2.5">
-              <span class="h-2.5 w-2.5 rounded-full bg-[var(--accent-green)]" />
-              <span class="font-mono text-xs tracking-wider text-[var(--text-primary)]">
-                LOOM_DAEMON // LIVE
-              </span>
-            </div>
-            <span class="rounded-full bg-[var(--accent-blue-soft)] px-2.5 py-0.5 font-mono text-[11px] text-[var(--accent-blue)]">
-              127.0.0.1:4320
-            </span>
-          </div>
+          {es.hero.line1}
+        </span>
+        <span
+          data-reveal="line"
+          data-i18n-es={es.hero.line2}
+          data-i18n-en={en.hero.line2}
+          class="loom-clip-line block"
+        >
+          {es.hero.line2}
+        </span>
+      </h1>
 
-          <div class="mt-5 grid grid-cols-2 gap-3 font-mono text-xs">
-            <div class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 p-3.5">
-              <p class="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">RUST_CORE</p>
-              <p class="mt-1 text-lg font-semibold text-[var(--text-primary)]">42/42 tests</p>
-              <p class="mt-0.5 text-[11px] text-[var(--accent-green)]">0 warnings</p>
-            </div>
-            <div class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 p-3.5">
-              <p class="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">DESKTOP_UI</p>
-              <p class="mt-1 text-lg font-semibold text-[var(--text-primary)]">Tauri v2</p>
-              <p class="mt-0.5 text-[11px] text-[var(--accent-blue)]">Tray + Notch</p>
-            </div>
-            <div class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 p-3.5">
-              <p class="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">ISOLATION</p>
-              <p class="mt-1 text-lg font-semibold text-[var(--text-primary)]">Git Worktree</p>
-              <p class="mt-0.5 text-[11px] text-[var(--text-secondary)]">Zero collisions</p>
-            </div>
-            <div class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/80 p-3.5">
-              <p class="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">BRIDGE</p>
-              <p class="mt-1 text-lg font-semibold text-[var(--text-primary)]">ClaudeHub</p>
-              <p class="mt-0.5 text-[11px] text-[var(--accent-amber)]">loom-runs.jsonl</p>
-            </div>
-          </div>
+      <p
+        data-reveal="line"
+        data-i18n-es={es.hero.subtitle}
+        data-i18n-en={en.hero.subtitle}
+        class="loom-clip-line max-w-xl text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg"
+      >
+        {es.hero.subtitle}
+      </p>
 
-          <div class="mt-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-void)]/70 px-4 py-3 font-mono text-[11px] text-[var(--text-secondary)]">
-            <span class="text-[var(--accent-green)]">$</span> loom-cli route --role implementer --sensitivity confidential
-          </div>
-        </aside>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span
+          data-i18n-es={es.hero.toolsLabel}
+          data-i18n-en={en.hero.toolsLabel}
+          class="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]"
+        >
+          {es.hero.toolsLabel}
+        </span>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <img src="/brands/claude.svg" alt="Claude" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/codex.svg" alt="Codex" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/gemini.svg" alt="Gemini" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/antigravity.svg" alt="Antigravity" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/opencode.svg" alt="OpenCode" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/omniroute.svg" alt="OmniRoute" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/claudehub.png" alt="ClaudeHub" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/ollama.svg" alt="Ollama" class="h-6 w-6 rounded-md object-contain" />
+          <img src="/brands/git.svg" alt="Git" class="h-6 w-6 rounded-md object-contain" />
+        </div>
       </div>
     </section>
 
@@ -202,7 +112,8 @@ const en = COPY.en;
   <footer class="relative z-10 border-t border-[var(--border-hairline)] bg-[var(--bg-void)]/80 px-4 py-8 backdrop-blur-md sm:px-6">
     <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
       <div class="flex items-center gap-3 font-mono">
-        <span class="text-[var(--text-primary)]">LOOM // TELAR</span>
+        <img src="/favicon.svg" alt="Loom" class="h-5 w-5 rounded-md" />
+        <span class="text-[var(--text-primary)]">LOOM</span>
         <span>·</span>
         <span>MIT © 2026 NormanSMA</span>
       </div>

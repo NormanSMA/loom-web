@@ -75,12 +75,9 @@ export function DownloadPortal() {
     >
       <div className="loom-glass-panel loom-spotlight relative overflow-hidden rounded-3xl p-5 sm:p-8 lg:p-12">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="font-mono text-xs tracking-[0.2em] text-[var(--accent-blue)]">
-            {t.eyebrow}
-          </p>
           <h2
             id="descargar-heading"
-            className="mt-3 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl"
+            className="text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl"
           >
             {t.headline}
           </h2>
@@ -92,7 +89,7 @@ export function DownloadPortal() {
         <div className="mx-auto mt-8 max-w-3xl">
           <div
             role="tablist"
-            aria-label={t.eyebrow}
+            aria-label={t.modeSelectorLabel}
             className="grid grid-cols-1 gap-2 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-void)]/80 p-1.5 sm:grid-cols-3"
           >
             {DOWNLOAD_MODE_IDS.map((id) => {

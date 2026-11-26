@@ -71,12 +71,9 @@ export function SignalRouter() {
     >
       <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
-          <p className="font-mono text-xs tracking-[0.2em] text-[var(--accent-blue)]">
-            {t.eyebrow}
-          </p>
           <h2
             id="enrutador-heading"
-            className="mt-3 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl"
+            className="text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl"
           >
             {t.title}
           </h2>

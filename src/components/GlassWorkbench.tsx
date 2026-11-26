@@ -123,7 +123,6 @@ const AGENT_STATES: readonly StateDefinition[] = [
 const COPY: Record<
   Lang,
   {
-    eyebrow: string;
     title: string;
     foldersHeading: string;
     drawerTitle: string;
@@ -136,7 +135,6 @@ const COPY: Record<
   }
 > = {
   es: {
-    eyebrow: '02 // ESTUDIO_TELAR',
     title: 'Un estudio para tejer contextos, carpetas y estados vivos.',
     foldersHeading: 'CARPETAS_CONTEXTO',
     drawerTitle: 'INSPECTOR_PROYECTO',
@@ -148,7 +146,6 @@ const COPY: Record<
     notchPrefix: 'LOOM_ISLAND',
   },
   en: {
-    eyebrow: '02 // LOOM_STUDIO',
     title: 'A studio for weaving contexts, folders, and live states.',
     foldersHeading: 'CONTEXT_FOLDERS',
     drawerTitle: 'PROJECT_INSPECTOR',
@@ -325,10 +322,7 @@ export function GlassWorkbench() {
       `}</style>
 
       <div className="mb-10 max-w-3xl">
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-[var(--accent-blue)]">
-          {t.eyebrow}
-        </p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl">
           {t.title}
         </h2>
       </div>
@@ -336,14 +330,9 @@ export function GlassWorkbench() {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
         {/* Left column — Interactive Dark-Glass Folders */}
         <div className="min-w-0 space-y-5">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs tracking-widest text-[var(--text-muted)]">
-              {t.foldersHeading}
-            </span>
-            <span className="font-mono text-xs text-[var(--text-secondary)]">
-              03 / 03
-            </span>
-          </div>
+          <p className="font-mono text-xs tracking-widest text-[var(--text-muted)]">
+            {t.foldersHeading}
+          </p>
 
           <div className="grid gap-4 sm:grid-cols-3">
             {FOLDERS.map((folder) => {

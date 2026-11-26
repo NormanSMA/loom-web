@@ -285,18 +285,12 @@ export interface CopyBundle {
     githubCta: string;
   };
   hero: {
-    eyebrow: string;
     line1: string;
     line2: string;
-    title: string;
     subtitle: string;
-    primaryCta: string;
-    secondaryCta: string;
-    loopbackBadge: string;
     toolsLabel: string;
   };
   signalRouter: {
-    eyebrow: string;
     title: string;
     subtitle: string;
     metrics: readonly {
@@ -316,7 +310,7 @@ export interface CopyBundle {
     commandLabel: string;
   };
   downloadPortal: {
-    eyebrow: string;
+    modeSelectorLabel: string;
     headline: string;
     subtitle: string;
     copy: string;
@@ -330,7 +324,7 @@ export interface CopyBundle {
 export const COPY: Record<Lang, CopyBundle> = {
   es: {
     navbar: {
-      brand: 'LOOM // TELAR',
+      brand: 'LOOM',
       links: {
         reel: 'Carrete',
         studio: 'Estudio',
@@ -343,19 +337,13 @@ export const COPY: Record<Lang, CopyBundle> = {
       githubCta: 'GitHub',
     },
     hero: {
-      eyebrow: 'ORQUESTADOR LOCAL MULTIAGENTE',
       line1: 'Teje agentes CLI',
       line2: 'en un solo telar local.',
-      title: 'Teje agentes CLI en un solo telar local.',
       subtitle:
-        'Coordina Claude Code, Codex, Gemini, Antigravity, OpenCode y OmniRoute en git worktrees aislados sobre 127.0.0.1.',
-      primaryCta: 'Instalar Loom',
-      secondaryCta: 'Explorar Estudio',
-      loopbackBadge: '127.0.0.1 // PrivacyGate activo',
+        'Coordina Claude Code, Codex, Gemini, Antigravity, OpenCode y OmniRoute en git worktrees aislados.',
       toolsLabel: 'Conectores activos',
     },
     signalRouter: {
-      eyebrow: '03 // ENRUTADOR',
       title: 'Conmutador de señal con compuerta de privacidad',
       subtitle:
         'Cada ejecución atraviesa PrivacyGate, aislamiento en Git Worktree y Quality Gate antes de tocar el repositorio principal.',
@@ -381,7 +369,7 @@ export const COPY: Record<Lang, CopyBundle> = {
       commandLabel: 'Resolución CLI',
     },
     downloadPortal: {
-      eyebrow: '04 // DESCARGAR',
+      modeSelectorLabel: 'Modos de instalación',
       headline: 'Teje tu propio flujo local.',
       subtitle:
         'Compila el binario nativo en Tauri v2, prueba el modo demo en segundos o delega la instalación a tu agente.',
@@ -394,7 +382,7 @@ export const COPY: Record<Lang, CopyBundle> = {
   },
   en: {
     navbar: {
-      brand: 'LOOM // TELAR',
+      brand: 'LOOM',
       links: {
         reel: 'Reel',
         studio: 'Studio',
@@ -407,19 +395,13 @@ export const COPY: Record<Lang, CopyBundle> = {
       githubCta: 'GitHub',
     },
     hero: {
-      eyebrow: 'LOCAL MULTI-AGENT ORCHESTRATOR',
       line1: 'Weave CLI agents',
       line2: 'on one local loom.',
-      title: 'Weave CLI agents on one local loom.',
       subtitle:
-        'Coordinate Claude Code, Codex, Gemini, Antigravity, OpenCode, and OmniRoute across isolated git worktrees on 127.0.0.1.',
-      primaryCta: 'Install Loom',
-      secondaryCta: 'Explore Studio',
-      loopbackBadge: '127.0.0.1 // PrivacyGate active',
+        'Coordinate Claude Code, Codex, Gemini, Antigravity, OpenCode, and OmniRoute across isolated git worktrees.',
       toolsLabel: 'Active connectors',
     },
     signalRouter: {
-      eyebrow: '03 // SIGNAL_ROUTER',
       title: 'Privacy-gated signal switchboard',
       subtitle:
         'Every task passes through PrivacyGate, Git Worktree isolation, and Quality Gate before touching your main branch.',
@@ -445,7 +427,7 @@ export const COPY: Record<Lang, CopyBundle> = {
       commandLabel: 'CLI resolution',
     },
     downloadPortal: {
-      eyebrow: '04 // DOWNLOAD',
+      modeSelectorLabel: 'Installation modes',
       headline: 'Weave your own local workflow.',
       subtitle:
         'Run the native Tauri v2 desktop app, launch deterministic demo mode in seconds, or let your local AI agent set it up.',

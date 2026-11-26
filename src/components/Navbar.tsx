@@ -16,8 +16,6 @@ import {
   toggleLandingSound,
 } from '../scripts/sound';
 
-const DOT_CELLS = [0, 1, 2, 3, 4, 5, 6, 7, 8] as const;
-
 export function Navbar() {
   const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const [soundOn, setSoundOn] = useState(true);
@@ -61,7 +59,6 @@ export function Navbar() {
   };
 
   const t = COPY[lang].navbar;
-  const [shortBrand] = t.brand.split(' // ', 1);
 
   return (
     <header className="fixed inset-x-3 top-3 z-40 mx-auto max-w-6xl rounded-2xl loom-glass-panel px-3 py-2 sm:px-4">
@@ -71,29 +68,8 @@ export function Navbar() {
           aria-label={t.brand}
           className="inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-xl px-1.5 text-xs font-semibold tracking-[0.16em] text-[var(--text-primary)] transition-colors hover:text-[var(--accent-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)] sm:text-sm"
         >
-          <span
-            aria-hidden="true"
-            className="grid grid-cols-3 gap-0.5 rounded-md border border-[var(--border-hairline)] bg-[var(--bg-elevated)] p-1.5"
-          >
-            {DOT_CELLS.map((cell) => {
-              const isCore = cell === 4;
-              const isAxis = cell === 1 || cell === 3 || cell === 5 || cell === 7;
-              return (
-                <span
-                  key={cell}
-                  className={
-                    isCore
-                      ? 'h-1 w-1 rounded-full bg-[var(--accent-blue)] animate-pulse'
-                      : isAxis
-                        ? 'h-1 w-1 rounded-full bg-[var(--text-primary)] opacity-80'
-                        : 'h-1 w-1 rounded-full bg-[var(--text-muted)] opacity-45'
-                  }
-                />
-              );
-            })}
-          </span>
-          <span className="font-mono whitespace-nowrap sm:hidden">{shortBrand}</span>
-          <span className="hidden font-mono whitespace-nowrap sm:inline">{t.brand}</span>
+          <img src="/favicon.svg" alt="Loom" className="h-7 w-7 shrink-0 rounded-lg" />
+          <span className="font-mono whitespace-nowrap">{t.brand}</span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
