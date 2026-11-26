@@ -4,3 +4,5 @@ dist/
 .vercel/
 test-results/
 playwright-report/
+
+.vercel
